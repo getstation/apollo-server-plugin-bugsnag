@@ -1,0 +1,17 @@
+{
+  "name": "apollo-server-plugin-error",
+  "version": "1.0.0",
+  "description": "apollo-server plugin that handle errors",
+  "main": "dist/plugin.js",
+  "types": "dist/plugin.d.ts",
+  "license": "MIT",
+  "devDependencies": {
+    "apollo-server-plugin-base": "^0.7.0",
+    "graphql": "^15.0.0",
+    "rimraf": "^3.0.2",
+    "typescript": "^3.8.3"
+  },
+  "scripts": {
+    "prepublishOnly": "rimraf dist && tsc -p . --outDir dist"
+  }
+}
