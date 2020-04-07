@@ -1,7 +1,7 @@
 {
-  "name": "apollo-server-plugin-error",
+  "name": "apollo-server-plugin-bugsnag",
   "version": "1.0.0",
-  "description": "apollo-server plugin that handle errors",
+  "description": "apollo-server plugin that send errors to bugsnag",
   "main": "dist/plugin.js",
   "types": "dist/plugin.d.ts",
   "license": "MIT",
@@ -13,5 +13,10 @@
   },
   "scripts": {
     "prepublishOnly": "rimraf dist && tsc -p . --outDir dist"
+  },
+  "dependencies": {
+    "@bugsnag/js": "^6.5.2",
+    "apollo-server-plugin-error": "^1.1.0",
+    "tslib": "^1.11.1"
   }
 }

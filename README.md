@@ -1,15 +1,24 @@
 ## Usage
 ```typescript
-import { ApolloServerPluginError } from 'apollo-server-plugin-error';
+import { getApolloBugsnagPlugin } from 'apollo-server-plugin-bugsnag';
 
 ...
 const server = new ApolloServer({
   ...,
   plugins: [
-    new ApolloServerPluginError((error) => {
-      // here you handle the error as you want
-      console.error(error);
-    })
+    getApolloBugsnagPlugin(
+      // your existing instance of Bugsnag Client
+      bugsnagClient,
+      // a function that returns additonal options.
+      // Used to enchance bugsnagClient.notify calls
+      (requestContext) => {
+        // my context has a `state` object that I can use to enchance
+        // notify calls
+        return {
+          user: requestContext.state.user,
+        };
+      }
+    )
   ],
 });
 ```
@@ -17,7 +26,7 @@ const server = new ApolloServer({
 ## Install
 ```shell script
 # via npm
-npm install apollo-server-plugin-error
+npm install apollo-server-plugin-bugsnag
 # or via yarn
-yarn add apollo-server-plugin-error
+yarn add apollo-server-plugin-bugsnag
 ```
