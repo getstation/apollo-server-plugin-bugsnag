@@ -30,3 +30,11 @@ npm install apollo-server-plugin-bugsnag
 # or via yarn
 yarn add apollo-server-plugin-bugsnag
 ```
+
+### If using bugsnag 6.x
+```shell script
+# via npm
+npm install apollo-server-plugin-bugsnag@1.0.0
+# or via yarn
+yarn add apollo-server-plugin-bugsnag@1.0.0
+```

@@ -1,22 +1,15 @@
-import { Bugsnag } from '@bugsnag/js';
-import { ApolloServerPlugin, GraphQLRequestContext } from 'apollo-server-plugin-base';
+import Bugsnag, { Event } from '@bugsnag/js';
+import { ApolloServerPlugin } from 'apollo-server-plugin-base';
 import { ApolloServerPluginError } from 'apollo-server-plugin-error';
 
-export function getApolloBugsnagPlugin<T>(bugsnag: Bugsnag.Client,
-                                          getNotifyOptions?: (context: GraphQLRequestContext<T>) => Bugsnag.INotifyOpts): ApolloServerPlugin<T> {
-  return new ApolloServerPluginError((e, requestContext) => {
-    const opts = getNotifyOptions ? getNotifyOptions(requestContext) : ({} as Bugsnag.INotifyOpts);
-
+export function getApolloBugsnagPlugin<T>(onError?: (event: Event) => void): ApolloServerPlugin<T> {
+  return new ApolloServerPluginError<T>((e, requestContext) => {
     requestContext.errors.forEach(err => {
-      bugsnag.notify(err, {
-        ...opts,
-        request: requestContext.request.http,
-        metaData: {
-          GraphQL: {
-            errorPath: err.path,
-          },
-          ...opts?.metaData,
-        },
+      Bugsnag.notify(err, event => {
+        event.addMetadata('custom', {GraphQL: {
+          errorPath: err.path,
+        }});
+        if (onError) onError(event);
       });
     });
   });

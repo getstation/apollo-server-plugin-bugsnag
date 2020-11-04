@@ -1,22 +1,22 @@
 {
   "name": "apollo-server-plugin-bugsnag",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "apollo-server plugin that send errors to bugsnag",
   "main": "dist/plugin.js",
   "types": "dist/plugin.d.ts",
   "license": "MIT",
   "devDependencies": {
-    "apollo-server-plugin-base": "^0.7.0",
-    "graphql": "^15.0.0",
+    "apollo-server-plugin-base": "^0.10.2",
+    "graphql": "^15.4.0",
     "rimraf": "^3.0.2",
-    "typescript": "^3.8.3"
+    "typescript": "^4.0.5"
   },
   "scripts": {
     "prepublishOnly": "rimraf dist && tsc -p . --outDir dist"
   },
   "dependencies": {
-    "@bugsnag/js": "^6.5.2",
-    "apollo-server-plugin-error": "^1.1.0",
-    "tslib": "^1.11.1"
+    "@bugsnag/js": "^7.5.1",
+    "apollo-server-plugin-error": "^2.0.1",
+    "tslib": "^2.0.3"
   }
 }
