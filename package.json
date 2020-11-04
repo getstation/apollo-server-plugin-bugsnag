@@ -1,6 +1,6 @@
 {
   "name": "apollo-server-plugin-bugsnag",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "apollo-server plugin that send errors to bugsnag",
   "main": "dist/plugin.js",
   "types": "dist/plugin.d.ts",

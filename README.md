@@ -7,11 +7,8 @@ const server = new ApolloServer({
   ...,
   plugins: [
     getApolloBugsnagPlugin(
-      // your existing instance of Bugsnag Client
-      bugsnagClient,
-      // a function that returns additonal options.
-      // Used to enchance bugsnagClient.notify calls
-      (requestContext) => {
+      // error callback
+      (event, requestContext) => {
         // my context has a `state` object that I can use to enchance
         // notify calls
         return {
